@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>Project testing</title>
+  </head>
+  <body>
+    <h1>test</h1>
+    <video id="streaming" width="300" controls></video>
+  </body>
+  <script>
+      var constraint = { audio: true, video: { width: 1280, height: 720 } };
+      navigator.mediaDevices.getUserMedia(constraint).then( (mediaStream)=>{
+          var video = document.getElementById("streaming");
+          video.srcObject = mediaStream;
+          video.onloadedmetadata = (e) => {
+            video.play();
+          };
+      }).catch(err => console.log(err) );
+  </script>
+</html>
